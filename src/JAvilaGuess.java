@@ -4,31 +4,37 @@ public class JAvilaGuess
 {
     public static void main(String[] args)
     {
-        youGuess();
         systemGuess();
     }
 
     private static void systemGuess()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("Think of a number between 1-100. When you are ready, type \"ready\".");
+        System.out.println("What is your first name?");
+        String name = input.next();
+        System.out.println("Think of a number between 1-100, " + name + ". When you are ready, type \"ready\".");
         int guesser = 50;
         if (input.next().equals("ready"))
-            System.out.println("Is it higher, lower, or equal to " + guesser + "?");
-        while (!(input.next().equals("equal")))
+            System.out.println("Tell me, " + name + ", is it higher, lower, or equal to " + guesser + "?");
+        String a = input.next();
+        while (!(a.equals("equal")))
         {
-            if (input.next().equals("higher"))
+            if (a.equals("higher"))
             {
+                a = input.next();
                 guesser += (100 - guesser)/2;
-                System.out.println("Is it higher, lower, or equal to " + guesser + "?");
+                System.out.println("Tell me, " + name + ", is it higher, lower, or equal to " + guesser + "?");
+                a = "";
             }
-            if (input.next().equals("lower"))
+            if (a.equals("lower"))
             {
+                a = input.next();
                 guesser -= (100 - guesser)/2;
-                System.out.println("Is it higher, lower, or equal to " + guesser + "?");
+                System.out.println("Tell me, " + name + ", is it higher, lower, or equal to " + guesser + "?");
+                a = "";
             }
         }
-        System.out.println("Your number is " + guesser + ".");
+        System.out.println(name + "'s number is " + guesser + ".");
     }
 
     private static void youGuess()
