@@ -4,7 +4,19 @@ public class JAvilaGuess
 {
     public static void main(String[] args)
     {
-        systemGuess();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Welcome. Please, choose which game you'd like to play. Type either \"you\" or \"I\"");
+        String d = input.next();
+        if (d.equals("you"))
+            systemGuess();
+        else
+        {
+            if (d.equals("I"))
+                youGuess();
+            else
+                System.out.println("That wasn't an option, idiot.");
+        }
+        System.out.println("That was fun. You humans are so predictable.");
     }
 
     private static void systemGuess()
@@ -16,23 +28,30 @@ public class JAvilaGuess
         int guesser = 50;
         if (input.next().equals("ready"))
             System.out.println("Tell me, " + name + ", is it higher, lower, or equal to " + guesser + "?");
-        String a = input.next();
-        while (!(a.equals("equal")))
+        String a = "";
+        int b = 0;
+        int hold = 50;
+        while (b != 1)
         {
+            a = input.next();
             if (a.equals("higher"))
             {
-                a = input.next();
-                guesser += (100 - guesser)/2;
+                hold = hold/2;
+                guesser += hold;
+                if (guesser > 100)
+                    guesser = 100;
                 System.out.println("Tell me, " + name + ", is it higher, lower, or equal to " + guesser + "?");
-                a = "";
             }
             if (a.equals("lower"))
             {
-                a = input.next();
-                guesser -= (100 - guesser)/2;
+                hold = hold/2;
+                guesser -= hold;
+                if (guesser < 1)
+                    guesser = 1;
                 System.out.println("Tell me, " + name + ", is it higher, lower, or equal to " + guesser + "?");
-                a = "";
             }
+            if (a.equals("equal"))
+                b = 1;
         }
         System.out.println(name + "'s number is " + guesser + ".");
     }
@@ -40,15 +59,17 @@ public class JAvilaGuess
     private static void youGuess()
     {
         Scanner input = new Scanner(System.in);
+        System.out.println("What is your first name?");
+        String name = input.next();
         int rand = (int) (Math.random() * 10);
         System.out.println("I am thinking of a number between 1 and 10...");
         int guess = input.nextInt();
         while (!(guess == rand))
         {
-            System.out.println("Incorrect");
+            System.out.println(name + ", that is incorrect");
             System.out.println("I am thinking of a number between 1 and 10...");
             guess = input.nextInt();
         }
-        System.out.println("Good job.");
+        System.out.println("Good job, " + name);
     }
 }
