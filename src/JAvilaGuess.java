@@ -5,7 +5,7 @@ public class JAvilaGuess
     public static void main(String[] args)
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("Welcome. Please, choose which game you'd like to play. Type either \"you\" or \"I\"");
+        System.out.println("Welcome. Please, choose which game you'd like to play. Type either \"you\" or \"I\".");
         String d = input.next();
         if (d.equals("you"))
             systemGuess();
